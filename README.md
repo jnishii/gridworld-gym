@@ -115,15 +115,15 @@ OpenAI Gym also provides [instructions](https://github.com/openai/gym/wiki/Envir
 ```
 from gym.envs.registration import register
 for env in gym.envs.registry.env_specs:
-     if 'MDPGridworld-v2' in env:
+     if 'MDPGridworld-v5' in env:
           print("Remove {} from registry".format(env))
           del gym.envs.registry.env_specs[env]
 
 register(
-    id='MDPGridworld-v2',
+    id='MDPGridworld-v5',
     entry_point='gym.envs.toy_text:MDPGridworldEnv',
     max_episode_steps=200,
-    kwargs={'r_wall': -10, 'r_fire': -300,
+    kwargs={'r_wall': -3, 'r_fire': -100, 'r_step': -3, 'start': (7,0), 
     'map': [
     "+--------+",
     "|   |   G|",
@@ -132,7 +132,7 @@ register(
     "| |   | F|",
     "| |   | F|",
     "| |FFFF F|",
-    "| |F    F|",
+    "| |     F|",
     "|S      F|",    
     "+--------+"],
            }
