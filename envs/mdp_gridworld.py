@@ -107,7 +107,7 @@ class MDPGridworldEnv(discrete.DiscreteEnv):
                 for a in range(4):
                     li = P[s][a]
                     letter = self.desc[row+1, col+1]
-                    if bytes(letter) in b'GF':
+                    if bytes(letter) in b'GFC':
                         li.append((1.0, s, 0, True))
                     elif bytes(letter) in b'|':
                         li.append((0.0, s, 0, False))
@@ -116,15 +116,15 @@ class MDPGridworldEnv(discrete.DiscreteEnv):
                         newrow, newcol = inc(row, col, a)
                         newstate = to_s(newrow, newcol)
                         newletter = self.desc[newrow+1, newcol+1]
-                        done = bytes(newletter) in b'GF'
+                        done = bytes(newletter) in b'GFC'
                         if bytes(newletter) in b'G':
-                            rew = self.r_goal
+                            rew += self.r_goal
                         elif bytes(newletter) in b'F':
-                            rew = self.r_fire
+                            rew += self.r_fire
                         elif bytes(newletter) in b'C':
-                            rew = self.r_cake
+                            rew += self.r_cake
                         elif newstate == s:
-                            rew = self.r_wall
+                            rew += self.r_wall
                         li.append((1.0, newstate, rew, done))
 
         isd /= isd.sum()
@@ -149,7 +149,7 @@ class MDPGridworldEnv(discrete.DiscreteEnv):
         return outfile
 
     def show_info(self):
-        print("Map and Cell IDs")
+        print("[Map and Cell IDs]")
         for row in range(self.nrow):
             print("+---"*8+"+", end="    ")
             print("+---"*8+"+")
@@ -171,10 +171,10 @@ class MDPGridworldEnv(discrete.DiscreteEnv):
         print("    ",end="")
         print("+---"*8+"+")
 
-        print("Rewards")
+        print("[Rewards]")
         print("S: start")
-        print("G: goal (%d points)" % (self.r_goal))
-        print("F: fire (%d points)" % self.r_fire)
-        print("#: wall (%d points)" % self.r_wall)
-        print("C: cake (%d points)" % self.r_cake)
+        print("G: goal (%d points, terminal state)" % (self.r_goal))
+        print("F: fire (%d points, terminal state)" % self.r_fire)
+        print("C: cake (%d points, terminal state)" % self.r_cake)
+        print("#: wall (%d points, back to the previous cell)" % self.r_wall)
         print("Time cost: %d points/step" % self.r_step)
