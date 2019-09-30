@@ -1,0 +1,15 @@
+*~
+.DS_Store
+.cache/
+.config/
+.ipynb_checkpoints/
+.ipython/
+.python_history
+.local/
+.jupyter/
+.bash*
+.less*
+video/
+html/
+*.log
+*.dat
