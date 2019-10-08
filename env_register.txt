@@ -23,3 +23,10 @@ register(
     max_episode_steps=200,
     kwargs={'r_wall': 0, 'r_fire': 10, 'r_cake': 5, 'r_step': -3, 'start': (7,0), 'map_name': "8x8", }
 )
+register(
+    id='MDPGridworld-cliff-v0',
+    entry_point='gym.envs.toy_text:MDPGridworldEnv',
+    max_episode_steps=200,
+    kwargs={'r_wall': -3, 'r_fire': -100, 'r_step': -3, 'start': (3,0), 
+    'map_name': "4x8cliff", }
+)
