@@ -1,10 +1,12 @@
 #!/bin/bash
 
-GYMDIR="/usr/local/anaconda3/lib/python3.6/site-packages/gym/envs"
+#GYMDIR="/usr/local/anaconda3/lib/python3.6/site-packages/gym/envs"
+GYMDIR=`python check_gympath.py`
+GYMDIR="${GYMDIR}/envs"
 
 echo "installing mdp_gridworld.py into ${GYMDIR}/toy_text"
 
-cp envs/mdp_gridworld.py ${GYMDIR}/toy_text
+install envs/mdp_gridworld.py ${GYMDIR}/toy_text/
 
 echo "[TODO]"
 echo "1) Read README and edit the following file"
