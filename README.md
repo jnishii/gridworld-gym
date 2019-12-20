@@ -3,8 +3,6 @@
 - This class is a revised version of [CptS 580 Reinforcement Learning
 ](https://github.com/IRLL/reinforcement_learning_class)
 - You can make your customized map in this gridworld class.
-- The following sentences are just a copy from  [CptS 580 Reinforcement Learning
-](https://github.com/IRLL/reinforcement_learning_class).
 
 OpenAI Gym Resources
 ----------
@@ -12,105 +10,62 @@ OpenAI Gym Resources
 * [Source code](https://github.com/openai/gym)
 * [Wiki](https://github.com/openai/gym/wiki)
 
-Two methods of using `MDPGridworld` gym environment?
+How to install `MDPGridworld` gym environment?
 -------------------------
 **IMPORTANT:** This class requires the OpenAI `gym` installed. It specifically requires the `Toy Text` environment collection installed which should be included even with the minimal gym installation.
 
-1. [Importing `MDPGridworld` class directly from your python code](#direct)
-2. [Follow the steps in adding a new environment in gym](#steps)
+Basic steps to add a new environment into OpenAI Gym are instructed in 
+[instructions](https://github.com/openai/gym/wiki/Environments).
 
-
-
-####<a name="direct"></a>Importing `MDPGridworld` class directly from your python code ###
-In the `example` folder, I have included a sample code [`mdp.py`](example/mdp.py) that uses this method. 
-
-```python
-# add directory to the PYTHONPATH when searching for python modules
-import sys
-sys.path.append("../") 
-
-# line above ensures the interpreter can locate envs.mdp_gridworld
-from envs.mdp_gridworld import MDPGridworldEnv 
-
-# this is just the same as env = gym.make('MDPGridworld-v0')
-env = MDPGridworldEnv()
-```
-
-
-####<a name="steps"></a> Steps in adding `MDPGridworld-v0` environment in Gym's `Toy Text` collection ###
-OpenAI Gym also provides [instructions](https://github.com/openai/gym/wiki/Environments) on how to add a new environment. 
-
-1. Open a terminal. Type `python` and hit enter, and you should enter Python's interpreter.
-
-    ```
-    $ python
-    ```
-
-2. Execute the following commands to find the location of `gym` in your system:
+1. Execute the following commands to find the location of `gym` in your system:
 
     ```python
-    >> import gym
-    >> gym.__file__
-    '/home/gabrieledcjr/Projects/gym/gym/__init__.pyc'
-    >> exit()
+    $ python check_gympath.py 
+    /usr/local/anaconda3/lib/python3.6/site-packages/gym/
     ```
 
-3. After exiting python's interpreter, you can either use the file explorer GUI or use terminal commands to change to the environments directory under the `gym` directory. This environments directory is called `envs`.
+2. After exiting python's interpreter, add the contents of `env_register.txt` into `/usr/local/anaconda3/lib/python3.6/site-packages/gym/envs/__init__.py`
+
 
     ```
-    $ cd /home/gabrieledcjr/Projects/gym/gym/envs
+    $ cat env_register.txt >> /usr/local/anaconda3/lib/python3.6/site-packages/gym/envs/__init__.py
     ```
 
-4. Using your favorite text editor, open the file `__init__.py`. 
+3. Copy the `mdp_gridworld.py` file under the diretory `toy_text`.
 
     ```
-    $ gedit __init__.py
+    $ cp envs/mdp_gridworld.py /usr/local/anaconda3/lib/python3.6/site-packages/gym/envs/toy_text
     ```
 
-5. We have to register our new environment, you need add the code below the `import` line. Optionally, you can look for the `Toy Text` registration group and add the code there. Save and close after.
-
-    ```python
-    from gym.envs.registration import registry, register, make, spec
-
-    # other registration codes ...
-
-    # Toy Text
-    # ----------------------------------------
-    
-    # Add this code below in envs/__init__.py
-    register(
-        id='MDPGridworld-v0',
-        entry_point='gym.envs.toy_text:MDPGridworldEnv',
-        max_episode_steps=100,
-    )
-    ```
-
-6. In the terminal, change directory to `toy_text`. This is where you will copy the `mdp_gridworld.py` file.
+4. Open the `/usr/local/anaconda3/lib/python3.6/site-packages/gym/envs/toy_text/__init__.py` file and add the code below. Save and close after. 
 
     ```
-    $ cd toy_text
-    $ cp <path_to_file>/mdp_gridworld.py .
-    ```
-
-7. Open the `__init__.py` file and add the code below. Save and close after. 
-
-    ```
-    $ gedit __init__.py
+    $ atom /usr/local/anaconda3/lib/python3.6/site-packages/gym/envs/toy_text/__init__.py
     ```
     ```python
     # Add this code in toy_text/__init__.py
     from gym.envs.toy_text.mdp_gridworld import MDPGridworldEnv
     ```
 
-8. `MDPGridworld-v0` gym environment is now ready to used. 
+5. `MDPGridworld-v0` gym environment is now ready to used. 
 
     ```python
     import gym
     env = gym.make('MDPGridworld-v0')
+    env.show_info() # you can get infos about the env.
     ```
 
+# Environments
 
-# define environment on Python code
+You can find predefined envs in `env_register.txt`.
+
+- MDPGridworld-v0: 3x4 map (Original)
+- MDPGridworld-v1: 8x8 map (Original)
+- MDPGridworld-v2: 8x8 map (v1 plus a cake (0 point and terminal))
+- MDPGridworld-v3: 8x8 map (v1 plus a cake (5 point and terminal))
+- MDPGridworld-cliff-v0: 4x8 map
+
+# Way to define environment in Python codes
 
 ```
 from gym.envs.registration import register
