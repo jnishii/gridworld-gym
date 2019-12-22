@@ -10,8 +10,16 @@ OpenAI Gym Resources
 * [Source code](https://github.com/openai/gym)
 * [Wiki](https://github.com/openai/gym/wiki)
 
+How to use `MDPGridworld` gym environment?
+-------------------------
+You can enjoy `MDPGridworld` by using a docker image [jnishii
+/
+docker-gym-nongpu36](https://hub.docker.com/repository/docker/jnishii/docker-gym-nongpu36).
+If you like to install it on your local environments, read the following instruction.
+
 How to install `MDPGridworld` gym environment?
 -------------------------
+
 **IMPORTANT:** This class requires the OpenAI `gym` installed. It specifically requires the `Toy Text` environment collection installed which should be included even with the minimal gym installation.
 
 Basic steps to add a new environment into OpenAI Gym are instructed in 
