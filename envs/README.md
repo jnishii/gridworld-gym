@@ -1,115 +1,127 @@
 `MDPGridworld-v0`
 --------------------
-These are the same environments as [IRLL/reinforcement_learning_class](https://github.com/IRLL/reinforcement_learning_class/tree/master/gym/envs), so please check this site about the detail.
+These are the same environments as [IRLL/reinforcement_learning_class](https://github.com/IRLL/reinforcement_learning_class/tree/master/gym/envs), so please check this site about the detail of basic definitions.
 
 * **States** or **Observation**: States are represented with scalar values in the range 0 to 11. 
 
-    ```
-    +---+---+---+---+
-    | 0 | 1 | 2 | 3 |
-    +---+---+---+---+
-    | 4 | 5 | 6 | 7 |
-    +---+---+---+---+
-    | 8 | 9 | 10| 11|
-    +---+---+---+---+
+You can get these infos by standard methods of openAI gym.
+```python
+import gym
+env = gym.make('MDPGridworld-v0')
+print(env.observation_space)
+# Discrete(12)
+print(env.observation_space.n)
+# 12
+```
+In MDPGridworld, you can get more infomations using show_info()
+```
+env.show_info()
+```
+```
+[Map and Cell IDs]
++---+---+---+---+    +---+---+---+---+
+|   |   |   | G |    |  0|  1|  2|  3|
++---+---+---+---+    +---+---+---+---+
+|   | # |   | F |    |  4|  5|  6|  7|
++---+---+---+---+    +---+---+---+---+
+| S |   |   |   |    |  8|  9| 10| 11|
++---+---+---+---+    +---+---+---+---+
+[Rewards]
+S: start
+G: goal (100 points, terminal state)
+F: fire (-100 points, terminal state)
+C: cake (5 points, terminal state)
+#: wall (0 points, back to the previous cell)
+Time cost: -3 points/step
 
-    +---+---+---+---+
-    |   |   |   | G |   S - Starting state
-    +---+---+---+---+   G - Goal
-    |   | # |   | F |   F - Fire (very bad state)
-    +---+---+---+---+   # - Wall
-    | S |   |   |   |
-    +---+---+---+---+
-    ```
-    
-    ```python
-    import gym
-    env = gym.make('MDPGridworld-v0')
-    print env.observation_space # give access to the Discrete state object
-    # Discrete(12)
-    print env.observation_space.n # give access to scalar value representing range for the states
-    # 12
-    ```
 
 `MDPGridworld-v1`
  --------------------
 8x8 version of GridWorld
 
 ```
-    "+--------+",
-    "|   |   G|",
-    "| |    | |",
-    "| |    | |",
-    "| |||||| |",
-    "| |    F |",
-    "| |    F |",
-    "| |    F |",
-    "|S       |",    
-    "+--------+"
+env = gym.make("MDPGridworld-v1")
+env.show_info()
 ```
-
-In 'MDPGridworld-v1', rewards are the same as in v0.
-```python
-env = gym.make('MDPGridworld-v1')
+```
+[Map and Cell IDs]
++---+---+---+---+---+---+---+---+    +---+---+---+---+---+---+---+---+
+|   |   |   | # |   |   |   | G |    |  0|  1|  2|  3|  4|  5|  6|  7|
++---+---+---+---+---+---+---+---+    +---+---+---+---+---+---+---+---+
+|   | # |   |   |   |   | # |   |    |  8|  9| 10| 11| 12| 13| 14| 15|
++---+---+---+---+---+---+---+---+    +---+---+---+---+---+---+---+---+
+|   | # |   |   |   |   | # |   |    | 16| 17| 18| 19| 20| 21| 22| 23|
++---+---+---+---+---+---+---+---+    +---+---+---+---+---+---+---+---+
+|   | # | # | # | # | # | # |   |    | 24| 25| 26| 27| 28| 29| 30| 31|
++---+---+---+---+---+---+---+---+    +---+---+---+---+---+---+---+---+
+|   | # |   |   |   |   | F |   |    | 32| 33| 34| 35| 36| 37| 38| 39|
++---+---+---+---+---+---+---+---+    +---+---+---+---+---+---+---+---+
+|   | # |   |   |   |   | F |   |    | 40| 41| 42| 43| 44| 45| 46| 47|
++---+---+---+---+---+---+---+---+    +---+---+---+---+---+---+---+---+
+|   | # |   |   |   |   | F |   |    | 48| 49| 50| 51| 52| 53| 54| 55|
++---+---+---+---+---+---+---+---+    +---+---+---+---+---+---+---+---+
+| S |   |   |   |   |   |   |   |    | 56| 57| 58| 59| 60| 61| 62| 63|
++---+---+---+---+---+---+---+---+    +---+---+---+---+---+---+---+---+
+[Rewards]
+S: start
+G: goal (100 points, terminal state)
+F: fire (-100 points, terminal state)
+C: cake (5 points, terminal state)
+#: wall (0 points, back to the previous cell)
+Time cost: -3 points/step
 ```
 
 
 `MDPGridworld-v2`
  --------------------
-In 'MDPGridworld-v2', `F` gives positive values.
-```python
-env = gym.make('MDPGridworld-v2')
+In 'MDPGridworld-v2', a cake `C` is added.
+When an agent get the cale, the agent get the 0 reward and the episode ends.
+
+```
+env = gym.make("MDPGridworld-v2")
+env.show_info()
+```
+[Map and Cell IDs]
++---+---+---+---+---+---+---+---+    +---+---+---+---+---+---+---+---+
+|   |   |   | # |   |   |   | G |    |  0|  1|  2|  3|  4|  5|  6|  7|
++---+---+---+---+---+---+---+---+    +---+---+---+---+---+---+---+---+
+|   | # |   |   |   |   | # |   |    |  8|  9| 10| 11| 12| 13| 14| 15|
++---+---+---+---+---+---+---+---+    +---+---+---+---+---+---+---+---+
+|   | # |   |   |   |   | # |   |    | 16| 17| 18| 19| 20| 21| 22| 23|
++---+---+---+---+---+---+---+---+    +---+---+---+---+---+---+---+---+
+|   | # | # | # | # | # | # |   |    | 24| 25| 26| 27| 28| 29| 30| 31|
++---+---+---+---+---+---+---+---+    +---+---+---+---+---+---+---+---+
+|   | # | C |   |   |   | F |   |    | 32| 33| 34| 35| 36| 37| 38| 39|
++---+---+---+---+---+---+---+---+    +---+---+---+---+---+---+---+---+
+|   | # |   |   |   |   | F |   |    | 40| 41| 42| 43| 44| 45| 46| 47|
++---+---+---+---+---+---+---+---+    +---+---+---+---+---+---+---+---+
+|   | # |   |   |   |   | F |   |    | 48| 49| 50| 51| 52| 53| 54| 55|
++---+---+---+---+---+---+---+---+    +---+---+---+---+---+---+---+---+
+| S |   |   |   |   |   |   |   |    | 56| 57| 58| 59| 60| 61| 62| 63|
++---+---+---+---+---+---+---+---+    +---+---+---+---+---+---+---+---+
+[Rewards]
+S: start
+G: goal (100 points, terminal state)
+F: fire (-100 points, terminal state)
+C: cake (0 points, terminal state)
+#: wall (0 points, back to the previous cell)
+Time cost: -3 points/step
 ```
 
-* **Actions**: Below are the scalar values for all possible actions in each non-terminal state. Agent keeps the same state when taking an action towards a wall.
 
-    ```
-    0 - North
-    1 - South 
-    2 - West 
-    3 - East
-    ```
-    
-    ```python
-    import gym
-    env = gym.make('MDPGridworld-v0')
-    print env.action_space # give access to the Discrete action object
-    # Discrete(4)
-    print env.action_space.n # give access to scalar value representing range for the available actions
-    # 4
-    ```
+`MDPGridworld-v3`
+ --------------------
+The environment of 'MDPGridworld-v3' is the same as 'MDPGridworld-v2' except that the reward by the cake is 5 points.
+```
+env = gym.make("MDPGridworld-v3")
+env.show_info()
+```
+[Rewards]
+S: start
+G: goal (100 points, terminal state)
+F: fire (-100 points, terminal state)
+C: cake (5 points, terminal state)
+#: wall (0 points, back to the previous cell)
+Time cost: -3 points/step
+```   
 
-* **Rewards**: `r(3) = +100`, `r(7) = -100`. Other states has a reward of `-3`.
-
-    ```python
-    import gym
-    env = gym.make('MDPGridworld-v0')
-    
-    action = 0
-    next_state, reward, terminal, info = env.step(action)
-    # reward is a return value of the environment's step method
-    ```
-
-* **Terminal states**: `{3, 7}` corresponds to goal (G) and fire (F) respectively, which means an episode ends when the agent reaches either states.
-
-    ```python
-    import gym
-    env = gym.make('MDPGridworld-v0')
-    
-    action = 0
-    next_state, reward, terminal, info = env.step(action)
-    # terminal is a return value of the environment's step method
-    ```
-
-* **Transition Probabilities**: This provides you access to the transition probability, that taking action `a` at current state `s`, what is the probabilty of reaching next state `s'`
-
-    ```python
-    import gym
-    env = gym.make('MDPGridworld-v0')
-    
-    state = 8
-    action = 0 # North
-    print env.P[state][action]
-    # [(1.0, 4, -3, False)]
-    # [(transition probability, next_state, reward, terminal)]
-    ```

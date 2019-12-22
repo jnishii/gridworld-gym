@@ -65,6 +65,8 @@ You can find predefined envs in `env_register.txt`.
 - MDPGridworld-v3: 8x8 map (v1 plus a cake (5 point and terminal))
 - MDPGridworld-cliff-v0: 4x8 map
 
+See [the documents under envs](envs/README.md) in more detail.
+
 # How to define environment in Python codes
 
 ```
