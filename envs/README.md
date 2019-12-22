@@ -125,3 +125,33 @@ C: cake (5 points, terminal state)
 Time cost: -3 points/step
 ```   
 
+
+
+`MDPGridworld-cliff-v0`
+ --------------------
+The environment of 'MDPGridworld-cliff-v0' is an environment similar to the cliff demonstrated in the textbook by Sutton and Barto.
+
+```
+env = gym.make("MDPGridworld-cliff-v0")
+env.show_info()
+```
+```
+[Map and Cell IDs]
++---+---+---+---+---+---+---+---+    +---+---+---+---+---+---+---+---+
+|   |   |   |   |   |   |   |   |    |  0|  1|  2|  3|  4|  5|  6|  7|
++---+---+---+---+---+---+---+---+    +---+---+---+---+---+---+---+---+
+|   |   |   |   |   |   |   |   |    |  8|  9| 10| 11| 12| 13| 14| 15|
++---+---+---+---+---+---+---+---+    +---+---+---+---+---+---+---+---+
+|   |   |   |   |   |   |   |   |    | 16| 17| 18| 19| 20| 21| 22| 23|
++---+---+---+---+---+---+---+---+    +---+---+---+---+---+---+---+---+
+| S | F | F | F | F | F | F | G |    | 24| 25| 26| 27| 28| 29| 30| 31|
++---+---+---+---+---+---+---+---+    +---+---+---+---+---+---+---+---+
+[Rewards]
+S: start
+G: goal (100 points, terminal state)
+F: fire (-100 points, terminal state)
+C: cake (5 points, terminal state)
+#: wall (-3 points, back to the previous cell)
+Time cost: -3 points/step
+```   
+
