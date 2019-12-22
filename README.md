@@ -1,6 +1,6 @@
 # Gridworld class of openAI gym
 
-- This class is a revised version of [CptS 580 Reinforcement Learning
+- This class is an enhanced version of [CptS 580 Reinforcement Learning
 ](https://github.com/IRLL/reinforcement_learning_class)
 - You can make your customized map in this gridworld class.
 
@@ -60,12 +60,12 @@ Basic steps to add a new environment into OpenAI Gym are instructed in
 You can find predefined envs in `env_register.txt`.
 
 - MDPGridworld-v0: 3x4 map (Original)
-- MDPGridworld-v1: 8x8 map (Original)
+- MDPGridworld-v1: 8x8 map
 - MDPGridworld-v2: 8x8 map (v1 plus a cake (0 point and terminal))
 - MDPGridworld-v3: 8x8 map (v1 plus a cake (5 point and terminal))
 - MDPGridworld-cliff-v0: 4x8 map
 
-# Way to define environment in Python codes
+# How to define environment in Python codes
 
 ```
 from gym.envs.registration import register

@@ -160,8 +160,8 @@ class MDPGridworldEnv(discrete.DiscreteEnv):
     def show_info(self):
         print("[Map and Cell IDs]")
         for row in range(self.nrow):
-            print("+---"*8+"+", end="    ")
-            print("+---"*8+"+")
+            print("+---"*self.ncol+"+", end="    ")
+            print("+---"*self.ncol+"+")
             print("|", end="")
 
             for col in range(self.ncol):
@@ -176,9 +176,9 @@ class MDPGridworldEnv(discrete.DiscreteEnv):
 
             print("")
 
-        print("+---"*8+"+",end="")
+        print("+---"*self.ncol+"+",end="")
         print("    ",end="")
-        print("+---"*8+"+")
+        print("+---"*self.ncol+"+")
 
         print("[Rewards]")
         print("S: start")

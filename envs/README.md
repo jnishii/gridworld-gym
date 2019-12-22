@@ -1,8 +1,8 @@
-`MDPGridworld-v0`:
+`MDPGridworld-v0`
 --------------------
-This version of the 3×4 grid world is deterministic. The set-up for this problem is based from this [blog post](https://goo.gl/GqkyzT).
+These are the same environments as [IRLL/reinforcement_learning_class](https://github.com/IRLL/reinforcement_learning_class/tree/master/gym/envs), so please check this site about the detail.
 
-* **States** or **Observation**: States are represented with scalar values in the range 0 to 11. Below is a diagram of the corresponding states.
+* **States** or **Observation**: States are represented with scalar values in the range 0 to 11. 
 
     ```
     +---+---+---+---+
@@ -31,7 +31,10 @@ This version of the 3×4 grid world is deterministic. The set-up for this proble
     # 12
     ```
 
-** 8x8 versions are also available
+`MDPGridworld-v1`
+ --------------------
+8x8 version of GridWorld
+
 ```
     "+--------+",
     "|   |   G|",
@@ -50,6 +53,9 @@ In 'MDPGridworld-v1', rewards are the same as in v0.
 env = gym.make('MDPGridworld-v1')
 ```
 
+
+`MDPGridworld-v2`
+ --------------------
 In 'MDPGridworld-v2', `F` gives positive values.
 ```python
 env = gym.make('MDPGridworld-v2')
